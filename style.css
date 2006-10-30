@@ -1,0 +1,82 @@
+/*
+ * Emtea -- MTA Mini Manager
+ * (C) Richard "Shred" Körber
+ *
+ * Emtea CSS
+ *
+ *-----------------------------------------------------------------------
+ * This software is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * $Id: style.css,v 1.2 2004/03/04 09:08:01 shred Exp $
+ */
+
+BODY {
+  font-family: arial,helvetica,sans-serif;
+  font-size: 14px;
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+A {
+  color:#000080;
+  text-decoration:none;
+}
+
+A:visited {
+  color:#000080;
+}
+
+A:hover {
+  color:#000080;
+  text-decoration:underline;
+}
+
+H1 {
+  margin:0px 0px 4px 0px;
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+  border-bottom:2px solid #000000;
+}
+
+TABLE.grid {
+  width:100%;
+  background-color:#EEEEEE;
+  border-collapse:collapse;
+  border-spacing:0px;
+}
+
+TABLE.grid TH {
+  background-color:#DDDDFF;
+  text-align:center;
+  border:1px solid #FFFFFF;
+  font-size:16px;
+  padding:2px;
+}
+
+TABLE.grid TD {
+  border:1px solid #FFFFFF;
+  padding:2px;
+}
+
+TABLE.grid TD.label {
+  background-color:#DDDDFF;
+  font-weight:bold;
+  vertical-align:top;
+  white-space:nowrap;
+}
+
+/*------------------------------------------------------------------------*/
+

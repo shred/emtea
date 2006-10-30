@@ -34,7 +34,12 @@
   //--- toc.php ---
   $lang{'toc_title'}            = 'List of all users and mailboxes';
   $lang{'toc_createnew'}        = 'Create new mailbox';
+  $lang{'toc_logout'}           = 'Logout';
   $lang{'toc_update'}           = 'Reload list';
+  
+  //--- logout.php ---
+  $lang{'lo_loggedout'}         = 'Logged out';
+  $lang{'lo_login'}             = 'Login';
   
   //--- domain.php ---
   $lang{'domain_title'}         = 'Domain';
@@ -53,7 +58,8 @@
   $lang{'domain_deletedomain'}  = 'Delete domain?';
   $lang{'domain_ack'}           = 'Confirm';
   $lang{'domain_submit'}        = 'Submit';  
-  
+  $lang{'domain_leastone'}      = 'The catch all address was automatically assigned to you.'; 
+
   //--- mailbox.php ---
   $lang{'mb_title'}             = 'Manage Mailbox';
   $lang{'mb_for'}               = 'For';
@@ -74,6 +80,7 @@
   $lang{'mb_spamvir'}           = 'Spam/Virus check';
   $lang{'mb_procmail'}          = 'Procmail';
   $lang{'mb_isadmin'}           = 'Admin Right';
+  $lang{'mb_isdomadmin'}        = 'Domain Admin Right';
   $lang{'mb_yes'}               = 'Yes';
   $lang{'mb_no'}                = 'No';
   $lang{'mb_delete'}            = 'Delete';

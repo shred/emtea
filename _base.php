@@ -44,7 +44,7 @@
 
   //=== LOGIN CHECK ===
   $rc = mysql_query(sprintf(
-    "SELECT id FROM mailbox WHERE id='%s' AND password=ENCRYPT('%s',password) AND admin=1",
+    "SELECT id, domadmin FROM mailbox WHERE id='%s' AND password=ENCRYPT('%s',password) AND (admin=1 OR domadmin=1)",
     addslashes($_SERVER['PHP_AUTH_USER']),
     addslashes($_SERVER['PHP_AUTH_PW'])
   ));
@@ -54,11 +54,24 @@
     print(tr('auth_error_unknown'));
     exit();
   }
+  $data = mysql_fetch_array($rc);
+  $domadmin = $data['domadmin']==1;
+
+  function isDomAdmin() {
+    global $domadmin;
+    return $domadmin;
+  }
+  
+  function getUser() {
+    return $_SERVER['PHP_AUTH_USER'];
+  }
   
   //=== INITIALIZE SMARTY ===
   require_once('Smarty.class.php');
   $smarty = new Smarty();
   $smarty->assign( 'tr', $lang );
+  $smarty->assign( 'domadmin', $domadmin );
+  $smarty->assign( 'user', $_SERVER['PHP_AUTH_USER'] );
 
   //=== HEADER ===
   header("Content-Type: text/html;charset=iso-8859-1");

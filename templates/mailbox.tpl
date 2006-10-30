@@ -112,6 +112,13 @@
       </select></td>
     </tr>
     <tr>
+      <td class="label">{$tr.mb_isdomadmin}</td>
+      <td><select name="domadmin" size="1">
+        <option value="1" {if $data.domadmin}selected{/if}>{$tr.mb_yes}</option>
+        <option value="0" {if !$data.domadmin}selected{/if}>{$tr.mb_no}</option>
+      </select></td>
+    </tr>
+    <tr>
       <td class="label">{$tr.mb_isadmin}</td>
       <td><select name="admin" size="1">
         <option value="1" {if $data.admin}selected{/if}>{$tr.mb_yes}</option>

@@ -34,7 +34,12 @@
   //--- toc.php ---
   $lang{'toc_title'}            = 'Lista di tutti utenti e caselle di posta';
   $lang{'toc_createnew'}        = 'Crea nuova casella di posta';
+  $lang{'toc_logout'}           = 'Termine attività';
   $lang{'toc_update'}           = 'Aggiorna lista';
+
+  //--- logout.php ---
+  $lang{'lo_loggedout'}         = 'Annotato fuori';
+  $lang{'lo_login'}             = 'Inizio attività';
   
   //--- domain.php ---
   $lang{'domain_title'}         = 'Dominio';
@@ -53,6 +58,7 @@
   $lang{'domain_deletedomain'}  = 'Cancella dominio?';
   $lang{'domain_ack'}           = 'Conferma';
   $lang{'domain_submit'}        = 'accetta';  
+  $lang{'domain_leastone'}      = 'Il indirizzo catch all è stato assegnato automaticamente voi.';
   
   //--- mailbox.php ---
   $lang{'mb_title'}             = 'Gestione caselle di posta';
@@ -74,6 +80,7 @@
   $lang{'mb_spamvir'}           = 'Controllo Spam/Virus';
   $lang{'mb_procmail'}          = 'Procmail';
   $lang{'mb_isadmin'}           = 'Amministratore';
+  $lang{'mb_isdomadmin'}        = 'Amministratore di dominio';
   $lang{'mb_yes'}               = 'Si';
   $lang{'mb_no'}                = 'No';
   $lang{'mb_delete'}            = 'Cancellare';

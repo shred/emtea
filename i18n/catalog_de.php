@@ -34,7 +34,12 @@
   //--- toc.php ---
   $lang{'toc_title'}            = 'Liste aller User und Mailboxen';
   $lang{'toc_createnew'}        = 'Neue Mailbox anlegen';
+  $lang{'toc_logout'}           = 'Abmelden';
   $lang{'toc_update'}           = 'Liste aktualisieren';
+  
+  //--- logout.php ---
+  $lang{'lo_loggedout'}         = 'Abgemeldet';
+  $lang{'lo_login'}             = 'Anmelden';
   
   //--- domain.php ---
   $lang{'domain_title'}         = 'Domain';
@@ -52,7 +57,8 @@
   $lang{'domain_deletelabel'}   = 'löschen';
   $lang{'domain_deletedomain'}  = 'Domain löschen?';
   $lang{'domain_ack'}           = 'Bestätigen';
-  $lang{'domain_submit'}        = 'übernehmen';  
+  $lang{'domain_submit'}        = 'übernehmen';
+  $lang{'domain_leastone'}      = 'Die Catch-All-Adresse wurde automatisch zugewiesen.';
   
   //--- mailbox.php ---
   $lang{'mb_title'}             = 'Mailbox verwalten';
@@ -74,6 +80,7 @@
   $lang{'mb_spamvir'}           = 'Spam/Virus-Check';
   $lang{'mb_procmail'}          = 'Procmail';
   $lang{'mb_isadmin'}           = 'Admin-Recht';
+  $lang{'mb_isdomadmin'}        = 'Domain-Admin-Recht';
   $lang{'mb_yes'}               = 'Ja';
   $lang{'mb_no'}                = 'Nein';
   $lang{'mb_delete'}            = 'Löschen';

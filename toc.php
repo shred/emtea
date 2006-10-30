@@ -26,7 +26,7 @@
   
   //=== PROCESS ALL CHANGES ===
   $ayBoxes = array();
-  $rs = mysql_query("SELECT id,name,imapok,admin,procmailok FROM mailbox ORDER BY admin DESC, imapok DESC, id");
+  $rs = mysql_query("SELECT id,name,imapok,admin,procmailok,domadmin FROM mailbox ORDER BY admin DESC, imapok DESC, id");
   while($ayResult = mysql_fetch_array($rs)) {
     $id = $ayResult['id'];
 

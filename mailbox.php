@@ -25,8 +25,10 @@
   
   require_once('_base.php');
 
+  if(isDomAdmin()) die("Forbidden!");
+  
   unset($id);
-  $ayData = array('name'=>'', 'uid'=>'', 'gid'=>'', 'home'=>'', 'mode'=>'DIR', 'maildir'=>'', 'spamdir'=>'', 'virusdir'=>'', 'imapok'=>0, 'admin'=>0, 'procmailok'=>0, 'amavisok'=>0);
+  $ayData = array('name'=>'', 'uid'=>'', 'gid'=>'', 'home'=>'', 'mode'=>'DIR', 'maildir'=>'', 'spamdir'=>'', 'virusdir'=>'', 'imapok'=>0, 'admin'=>0, 'procmailok'=>0, 'amavisok'=>0, 'domadmin'=>0);
   $changed = false;
   $deleted = false;
   $errorMsg = '';
@@ -49,7 +51,7 @@
     if(mysql_num_rows($rc)==0) {
       //--- New Entry ---
       mysql_query(sprintf(
-        "INSERT INTO mailbox SET id='%s', name='%s', uid='%s', gid='%s', home='%s', mode='%s', maildir='%s', spamdir=%s, virusdir=%s, imapok='%s', admin='%s', procmailok='%s', amavisok='%s'",
+        "INSERT INTO mailbox SET id='%s', name='%s', uid='%s', gid='%s', home='%s', mode='%s', maildir='%s', spamdir=%s, virusdir=%s, imapok='%s', admin='%s', procmailok='%s', amavisok='%s', domadmin='%s'",
         addslashes(trim($_REQUEST['id'])),
         addslashes(trim($_REQUEST['name'])),
         addslashes(intval($_REQUEST['uid'])),
@@ -62,12 +64,13 @@
         addslashes(intval($_REQUEST['imapok'])),
         addslashes(intval($_REQUEST['admin'])),
         addslashes(intval($_REQUEST['procmailok'])),
-        addslashes(intval($_REQUEST['amavisok']))
+        addslashes(intval($_REQUEST['amavisok'])),
+        addslashes(intval($_REQUEST['domadmin']))
       ));
     }else {
       //--- Existing Entry ---
       mysql_query(sprintf(
-        "UPDATE mailbox SET name='%s', uid='%s', gid='%s', home='%s', mode='%s', maildir='%s', spamdir=%s, virusdir=%s, imapok='%s', admin='%s', procmailok='%s', amavisok='%s' WHERE id='%s'",
+        "UPDATE mailbox SET name='%s', uid='%s', gid='%s', home='%s', mode='%s', maildir='%s', spamdir=%s, virusdir=%s, imapok='%s', admin='%s', procmailok='%s', amavisok='%s', domadmin='%s' WHERE id='%s'",
         addslashes(trim($_REQUEST['name'])),
         addslashes(intval($_REQUEST['uid'])),
         addslashes(intval($_REQUEST['gid'])),
@@ -80,6 +83,7 @@
         addslashes(intval($_REQUEST['admin'])),
         addslashes(intval($_REQUEST['procmailok'])),
         addslashes(intval($_REQUEST['amavisok'])),
+        addslashes(intval($_REQUEST['domadmin'])),
         addslashes(trim($_REQUEST['id']))
       ));
     }
@@ -102,7 +106,7 @@
   if(!$deleted && isset($_REQUEST['id'])) {
     $id = trim($_REQUEST['id']);
     $rs = mysql_query(sprintf(
-      "SELECT name, uid, gid, home, mode, maildir, spamdir, virusdir, imapok, admin, procmailok, amavisok FROM mailbox WHERE id='%s'",
+      "SELECT name, uid, gid, home, mode, maildir, spamdir, virusdir, imapok, admin, procmailok, amavisok, domadmin FROM mailbox WHERE id='%s'",
       addslashes($id)
     ));
     $ayData = mysql_fetch_array($rs);
@@ -119,7 +123,9 @@
   }
 
   //=== PROCESS TEMPLATE ===
-  $smarty->assign( 'id'         , $id );
+  if(isset($id)) {
+    $smarty->assign( 'id'         , $id );
+  }
   $smarty->assign( 'errorMsg'   , $errorMsg );
   $smarty->assign( 'title'      , tr('mb_title') );
   $smarty->assign( 'data'       , $ayData );

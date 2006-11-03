@@ -53,13 +53,16 @@
   $lang{'domain_delete'}        = 'Delete';
   $lang{'domain_forwards'}      = 'Forwarder';
   $lang{'domain_forward'}       = 'forward';
+  $lang{'domain_folder'}        = 'Folder';
   $lang{'domain_newmail'}       = 'New Mail Address';
   $lang{'domain_deletelabel'}   = 'delete';
   $lang{'domain_deletedomain'}  = 'Delete domain?';
   $lang{'domain_ack'}           = 'Confirm';
   $lang{'domain_submit'}        = 'Submit';  
   $lang{'domain_leastone'}      = 'The catch all address was automatically assigned to you.'; 
-
+  $lang{'domain_reject'}        = 'Reject';
+  $lang{'domain_kill'}          = 'Kill';
+  
   //--- mailbox.php ---
   $lang{'mb_title'}             = 'Manage Mailbox';
   $lang{'mb_for'}               = 'For';

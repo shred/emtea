@@ -51,14 +51,17 @@
   $lang{'domain_email'}         = 'Mail-Adresse';
   $lang{'domain_mailbox'}       = 'Mailbox';
   $lang{'domain_delete'}        = 'Löschen';
-  $lang{'domain_forwards'}      = 'Forwarder';
+  $lang{'domain_forwards'}      = 'Weiterleitung';
   $lang{'domain_forward'}       = 'forward';
+  $lang{'domain_folder'}        = 'Verzeichnis';
   $lang{'domain_newmail'}       = 'Neue Mail-Adresse';
   $lang{'domain_deletelabel'}   = 'löschen';
   $lang{'domain_deletedomain'}  = 'Domain löschen?';
   $lang{'domain_ack'}           = 'Bestätigen';
   $lang{'domain_submit'}        = 'übernehmen';
   $lang{'domain_leastone'}      = 'Die Catch-All-Adresse wurde automatisch zugewiesen.';
+  $lang{'domain_reject'}        = 'Abweisen';
+  $lang{'domain_kill'}          = 'Verwerfen';
   
   //--- mailbox.php ---
   $lang{'mb_title'}             = 'Mailbox verwalten';

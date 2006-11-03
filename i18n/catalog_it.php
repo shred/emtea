@@ -53,13 +53,16 @@
   $lang{'domain_delete'}        = 'Cancella';
   $lang{'domain_forwards'}      = 'Forwarder';
   $lang{'domain_forward'}       = 'forward';
+  $lang{'domain_folder'}        = 'Folder';
   $lang{'domain_newmail'}       = 'Nuovo indirizzo email';
   $lang{'domain_deletelabel'}   = 'cancellare';
   $lang{'domain_deletedomain'}  = 'Cancella dominio?';
   $lang{'domain_ack'}           = 'Conferma';
   $lang{'domain_submit'}        = 'accetta';  
   $lang{'domain_leastone'}      = 'Il indirizzo catch all è stato assegnato automaticamente voi.';
-  
+  $lang{'domain_reject'}        = 'Scarto';
+  $lang{'domain_kill'}          = 'Goccia';
+
   //--- mailbox.php ---
   $lang{'mb_title'}             = 'Gestione caselle di posta';
   $lang{'mb_for'}               = 'Per';

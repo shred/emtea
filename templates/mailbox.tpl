@@ -65,30 +65,16 @@
       <td><input type="text" name="home" value="{$data.home|escape}" size="50" maxlength="127"></td>
     </tr>
     <tr>
-      <td class="label">{$tr.mb_modus}</td>
-      <td>
-        {if $id }
-          {if $data.mode=='DIR'}Maildir{else}Mailbox{/if}
-          <input type="hidden" name="mode" value="{$data.mode}">
-        {else}
-          <select name="mode" size="1">
-            <option value="DIR" {if $data.mode=='DIR'}selected{/if}>Maildir</option>
-            <option value="FILE"  {if $data.mode!='DIR'}selected{/if}>Mailbox</option>
-          </select>
-        {/if}
-      </td>
-    </tr>
-    <tr>
-      <td class="label">{$tr.mb_df_mail}{$dirfile}</td>
+      <td class="label">{$tr.mb_df_mail}{$tr.mb_isdir}</td>
       <td><input type="text" name="maildir" value="{$data.maildir|escape}" size="50" maxlength="127"></td>
     </tr>
     <tr>
-      <td class="label">{$tr.mb_df_spam}{$dirfile}</td>
-      <td><input type="text" name="spamdir" value="{$data.spamdir|escape}" size="50" maxlength="127"><br><small>{$tr.mb_df_empty} {$tr.mb_df_mail}{$dirfile}</small></td>
+      <td class="label">{$tr.mb_df_spam}{$tr.mb_isdir}</td>
+      <td><input type="text" name="spamdir" value="{$data.spamdir|escape}" size="50" maxlength="127"><br><small>{$tr.mb_df_empty} {$tr.mb_df_mail}{$tr.mb_isdir}</small></td>
     </tr>
     <tr>
-      <td class="label">{$tr.mb_df_virus}{$dirfile}</td>
-      <td><input type="text" name="virusdir" value="{$data.virusdir|escape}" size="50" maxlength="127"><br><small>{$tr.mb_df_empty} {$tr.mb_df_mail}{$dirfile}</small></td>
+      <td class="label">{$tr.mb_df_virus}{$tr.mb_isdir}</td>
+      <td><input type="text" name="virusdir" value="{$data.virusdir|escape}" size="50" maxlength="127"><br><small>{$tr.mb_df_empty} {$tr.mb_df_mail}{$tr.mb_isdir}</small></td>
     </tr>
     <tr>
       <td class="label">{$tr.mb_imap}</td>

@@ -33,10 +33,11 @@
   <input type="hidden" name="event" value="1">
   <table class="grid">
     <tr>
-      <th colspan="2" width="60%">{$tr.domain_email}</th>
+      <th colspan="2" width="80%">{$tr.domain_email}</th>
       <th>{$tr.domain_mailbox}</th>
       <th>{$tr.domain_delete}</th>
       <th>{$tr.domain_forwards}</th>
+      <th>{$tr.domain_folder}</th>
     </tr>
     {foreach from=$ayData item=entry}
       <tr valign="top">
@@ -58,15 +59,20 @@
               <input type="hidden" name="fwd_{$entry.id}_{counter name=id2}" value="{$target|escape}">{$target|escape}<br>
             {/foreach}
           </td>
+          {* --- Folder --- *}
+          <td>
+            <input type="hidden" name="folder_{$entry.id}" value="{$entry.folder|escape}">{$entry.folder|escape}
+          </td>
         {else}
           {* --- Mailbox --- *}
           {if $entry.cnt==0 }
             <td>
               <select name="user_{$entry.id}" size="1">
-                <option value="">--</option>
+                <option value="">-- {$tr.domain_reject}</option>
+                <option value="*" {if $entry.devnull!=0}selected{/if}>[] {$tr.domain_kill}</option>
                 {foreach from=$ayUsers item=luser}
                   {if !$domadmin || $luser==$user}
-                    <option value="{$luser|escape}" {if $luser==$entry.mid}selected{/if}>{$luser|escape}</option>
+                    <option value="{$luser|escape}" {if $entry.devnull==0 && $luser==$entry.mid}selected{/if}>{$luser|escape}</option>
                   {/if}
                 {/foreach}
               </select>
@@ -84,9 +90,13 @@
           <td>
             {foreach from=$entry.forwards item=target}
               <input type="hidden" name="fwdid_{counter name=id1}" value="{$target|escape}">
-              <input type="text" name="fwd_{$entry.id}_{counter name=id2}" value="{$target|escape}" size="30" maxlength="255"><br>
+              <input type="text" name="fwd_{$entry.id}_{counter name=id2}" value="{$target|escape}" size="20" maxlength="255"><br>
             {/foreach}
-            <input type="text" name="fwd_{$entry.id}" size="30" maxlength="255">
+            <input type="text" name="fwd_{$entry.id}" size="20" maxlength="255">
+          </td>
+          {* --- Folder--- *}
+          <td>
+            <input type="text" name="folder_{$entry.id}" value="{$entry.folder|escape}" size="15" maxlength="127">
           </td>
         {/if}
       </tr>

@@ -79,19 +79,40 @@
       if(preg_match('/^user_(\d+)$/', $key, $ayMatch)) {
         if(isDomAdmin()) {
           mysql_query(sprintf(
-            "UPDATE address SET mailboxid=%s WHERE id='%s' AND (mailboxid='%s' OR mailboxid IS NULL)",
+            "UPDATE address SET mailboxid=%s, devnull=%s WHERE id='%s' AND (mailboxid='%s' OR mailboxid IS NULL)",
+            ($val!='' && $val!='*' ? "'".addslashes($val)."'" : "NULL"),
+            ($val=='*' ? 1 : 0),
+            addslashes($ayMatch[1]),
+            addslashes(getUser())
+          ));
+        }else {
+          mysql_query(sprintf(
+            "UPDATE address SET mailboxid=%s, devnull=%s WHERE id='%s'",
+            ($val!='' && $val!='*' ? "'".addslashes($val)."'" : "NULL"),
+            ($val=='*' ? 1 : 0),
+            addslashes($ayMatch[1])
+          ));
+        }
+      }
+
+      //--- Update all folder ---
+      if(preg_match('/^folder_(\d+)$/', $key, $ayMatch)) {
+        if(isDomAdmin()) {
+          mysql_query(sprintf(
+            "UPDATE address SET folder=%s WHERE id='%s' AND (mailboxid='%s' OR mailboxid IS NULL)",
             ($val!='' ? "'".addslashes($val)."'" : "NULL"),
             addslashes($ayMatch[1]),
             addslashes(getUser())
           ));
         }else {
           mysql_query(sprintf(
-            "UPDATE address SET mailboxid=%s WHERE id='%s'",
+            "UPDATE address SET folder=%s WHERE id='%s'",
             ($val!='' ? "'".addslashes($val)."'" : "NULL"),
             addslashes($ayMatch[1])
           ));
         }
       }
+
       //--- Delete entry ---
       if(preg_match('/^del_(\d+)$/', $key, $ayMatch)) {
         if(isDomAdmin()) {
@@ -193,7 +214,7 @@
   
   $fwdcnt = 0;
   $rs = mysql_query(sprintf(
-    "SELECT a.id id, a.local local, m.id mid, COUNT(f.target) cnt FROM address a LEFT JOIN mailbox m ON a.mailboxid=m.id LEFT JOIN forward f ON a.id=f.addressid WHERE a.domain='%s' GROUP BY a.id ORDER BY a.local",
+    "SELECT a.id id, a.local local, m.id mid, COUNT(f.target) cnt, a.folder folder, a.devnull devnull FROM address a LEFT JOIN mailbox m ON a.mailboxid=m.id LEFT JOIN forward f ON a.id=f.addressid WHERE a.domain='%s' GROUP BY a.id ORDER BY a.local",
     addslashes($domain)
   ));
   $ayData = array();

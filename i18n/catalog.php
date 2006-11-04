@@ -79,6 +79,7 @@
   $lang{'mb_df_spam'}           = 'Spam ';
   $lang{'mb_df_virus'}          = 'Virus ';
   $lang{'mb_df_empty'}          = 'Empty means';
+  $lang{'mb_editfilter'}        = 'Edit filter rules';
   $lang{'mb_imap'}              = 'IMAP Access';
   $lang{'mb_spamvir'}           = 'Spam/Virus check';
   $lang{'mb_procmail'}          = 'Procmail';
@@ -94,5 +95,19 @@
   $lang{'mb_pwdmismatch'}       = 'Passwords do not match. Password was NOT changed.';
   $lang{'mb_isdir'}             = 'Directory';
   $lang{'mb_isfile'}            = 'File';
+  
+  //--- filter.php ---
+  $lang{'filter_title'}         = 'Edit filter rules';
+  $lang{'filter_mailbox'}       = 'Filter rules for mailbox';
+  $lang{'filter_noid'}          = 'No user';
+  $lang{'filter_error'}         = 'Error';
+  $lang{'filter_submit'}        = 'Submit';
+  $lang{'filter_from'}          = 'Sender';
+  $lang{'filter_subject'}       = 'Subject';
+  $lang{'filter_to'}            = 'Recipient';
+  $lang{'filter_folder'}        = 'Folder';
+  $lang{'filter_delete'}        = 'Delete';
+  $lang{'filter_emptyrule'}     = 'Empty filter rule was not accepted';
+  $lang{'filter_nofolder'}      = 'Please specify a folder';
   
 ?>

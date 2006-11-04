@@ -41,7 +41,7 @@
     {if (!$domadmin) || ($box.id==$user)}
       <a name="{$box.id|escape}"></a>
       {if $domadmin}
-        <span style="font-size:120%">{$box.id|escape}</span>
+        <a href="filter.php?id={$box.id|escape}" target="index" style="font-size:120%">{$box.id|escape}</a>
       {else}
         <a href="mailbox.php?id={$box.id|escape}" target="index" style="font-size:120%">{$box.id|escape}</a>
       {/if}

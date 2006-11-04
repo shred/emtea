@@ -77,6 +77,10 @@
       <td><input type="text" name="virusdir" value="{$data.virusdir|escape}" size="50" maxlength="127"><br><small>{$tr.mb_df_empty} {$tr.mb_df_mail}{$tr.mb_isdir}</small></td>
     </tr>
     <tr>
+      <td class="label">&nbsp;</td>
+      <td><a href="filter.php?id={$id|escape}">{$tr.mb_editfilter}</a></td>
+    </tr>
+    <tr>
       <td class="label">{$tr.mb_imap}</td>
       <td><select name="imapok" size="1">
         <option value="1" {if $data.imapok}selected{/if}>{$tr.mb_yes}</option>

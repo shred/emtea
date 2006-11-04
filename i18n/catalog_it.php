@@ -79,6 +79,7 @@
   $lang{'mb_df_spam'}           = 'Spam-';
   $lang{'mb_df_virus'}          = 'Virus-';
   $lang{'mb_df_empty'}          = 'Vuoto =';
+  $lang{'mb_editfilter'}        = 'Pubblichi le regole del filtro';
   $lang{'mb_imap'}              = 'Accesso IMAP';
   $lang{'mb_spamvir'}           = 'Controllo Spam/Virus';
   $lang{'mb_procmail'}          = 'Procmail';
@@ -94,5 +95,19 @@
   $lang{'mb_pwdmismatch'}       = 'Le password non coincidono. Password NON cambiata.';
   $lang{'mb_isdir'}             = 'Cartella';
   $lang{'mb_isfile'}            = 'File';
+  
+  //--- filter.php ---
+  $lang{'filter_title'}         = 'Pubblichi le regole del filtro';
+  $lang{'filter_mailbox'}       = 'Regole del filtro';
+  $lang{'filter_noid'}          = 'No utente';
+  $lang{'filter_error'}         = 'Errore';
+  $lang{'filter_submit'}        = 'Conferma';
+  $lang{'filter_from'}          = 'Mittente';
+  $lang{'filter_subject'}       = 'Oggetto';
+  $lang{'filter_to'}            = 'Destinatario';
+  $lang{'filter_folder'}        = 'Folder';
+  $lang{'filter_delete'}        = 'Cancellare';
+  $lang{'filter_emptyrule'}     = 'La regola vuota del filtro non è stata accettata';
+  $lang{'filter_nofolder'}      = 'Specifichi prego un dispositivo di piegatura';
   
 ?>

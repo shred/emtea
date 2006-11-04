@@ -79,6 +79,7 @@
   $lang{'mb_df_spam'}           = 'Spam-';
   $lang{'mb_df_virus'}          = 'Virus-';
   $lang{'mb_df_empty'}          = 'Leer =';
+  $lang{'mb_editfilter'}        = 'Filterregeln bearbeiten';
   $lang{'mb_imap'}              = 'IMAP-Zugriff';
   $lang{'mb_spamvir'}           = 'Spam/Virus-Check';
   $lang{'mb_procmail'}          = 'Procmail';
@@ -94,5 +95,20 @@
   $lang{'mb_pwdmismatch'}       = 'Passwörter stimmten nicht überein. Passwort NICHT geändert.';
   $lang{'mb_isdir'}             = 'Verzeichnis';
   $lang{'mb_isfile'}            = 'Datei';
+  
+  //--- filter.php ---
+  $lang{'filter_title'}         = 'Filter verwalten';
+  $lang{'filter_mailbox'}       = 'Filter für Mailbox';
+  $lang{'filter_noid'}          = 'Kein Benutzer';
+  $lang{'filter_error'}         = 'Fehler';
+  $lang{'filter_submit'}        = 'übernehmen';
+  $lang{'filter_from'}          = 'Absender';
+  $lang{'filter_subject'}       = 'Betreff';
+  $lang{'filter_to'}            = 'Empfänger';
+  $lang{'filter_folder'}        = 'Verzeichnis';
+  $lang{'filter_delete'}        = 'Löschen';
+  $lang{'filter_emptyrule'}     = 'Leere Filterregel wurde nicht übernommen';
+  $lang{'filter_nofolder'}      = 'Ein Zielordner muss angegeben werden';
+  
   
 ?>

@@ -34,6 +34,7 @@
   //--- toc.php ---
   $lang{'toc_title'}            = 'List of all users and mailboxes';
   $lang{'toc_createnew'}        = 'Create new mailbox';
+  $lang{'toc_password'}         = 'Change password';
   $lang{'toc_logout'}           = 'Logout';
   $lang{'toc_update'}           = 'Reload list';
   
@@ -95,6 +96,10 @@
   $lang{'mb_pwdmismatch'}       = 'Passwords do not match. Password was NOT changed.';
   $lang{'mb_isdir'}             = 'Directory';
   $lang{'mb_isfile'}            = 'File';
+
+  //--- password.php ---
+  $lang{'pwd_title'}            = 'Change password';
+  $lang{'pwd_changed'}          = 'Password successfully changed.';
   
   //--- filter.php ---
   $lang{'filter_title'}         = 'Edit filter rules';

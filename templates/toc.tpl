@@ -35,6 +35,7 @@
     <a href="mailbox.php" target="index">{$tr.toc_createnew}</a><br>
   {/if}
   <a href="toc.php">{$tr.toc_update}</a><br>
+  <a href="password.php" target="index">{$tr.toc_password}</a><br>
   <a href="logout.php" target="_top">{$tr.toc_logout}</a>
   <hr noshade size="2">
   {foreach from=$ayBoxes item=box}

@@ -34,6 +34,7 @@
   //--- toc.php ---
   $lang{'toc_title'}            = 'Lista di tutti utenti e caselle di posta';
   $lang{'toc_createnew'}        = 'Crea nuova casella di posta';
+  $lang{'toc_password'}         = 'Cambia password';
   $lang{'toc_logout'}           = 'Termine attività';
   $lang{'toc_update'}           = 'Aggiorna lista';
 
@@ -95,7 +96,11 @@
   $lang{'mb_pwdmismatch'}       = 'Le password non coincidono. Password NON cambiata.';
   $lang{'mb_isdir'}             = 'Cartella';
   $lang{'mb_isfile'}            = 'File';
-  
+ 
+  //--- password.php ---
+  $lang{'pwd_title'}            = 'Cambia password';
+  $lang{'pwd_changed'}          = 'Password cambiata con successo.';
+ 
   //--- filter.php ---
   $lang{'filter_title'}         = 'Pubblichi le regole del filtro';
   $lang{'filter_mailbox'}       = 'Regole del filtro';

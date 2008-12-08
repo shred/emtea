@@ -25,26 +25,31 @@
   
   require_once('_base.php');
 
-  unset($id);
-  $ayData = array('name'=>'', 'uid'=>'', 'gid'=>'', 'home'=>'', 'maildir'=>'', 'spamdir'=>'', 'virusdir'=>'', 'imapok'=>0, 'admin'=>0, 'procmailok'=>0, 'amavisok'=>0, 'domadmin'=>0);
-  $changed = false;
-  $deleted = false;
   $errorMsg = '';
   
   //=== PROCESS ALL CHANGES ===
   if(trim($_REQUEST['pwd1'])!='' || trim($_REQUEST['pwd2'])!='') {
-    if(trim($_REQUEST['pwd1'])==trim($_REQUEST['pwd2'])) {
-      mysql_query(sprintf(
-        "UPDATE mailbox SET password=ENCRYPT('%s') WHERE id='%s'",
-        addslashes(trim($_REQUEST['pwd1'])),
-        addslashes($data['id'])
-      ));
+    $rc = mysql_query(sprintf(
+      "SELECT id FROM mailbox WHERE id='%s' AND password=ENCRYPT('%s',password)",
+      addslashes($data['id']),
+      addslashes($_REQUEST['pwdold'])
+    ));
+    if(mysql_num_rows($rc)!=1) {
+      $errorMsg = tr('pwd_oldbad');
+    } else {
+      if(trim($_REQUEST['pwd1'])==trim($_REQUEST['pwd2'])) {
+        mysql_query(sprintf(
+          "UPDATE mailbox SET password=ENCRYPT('%s') WHERE id='%s'",
+          addslashes(trim($_REQUEST['pwd1'])),
+          addslashes($data['id'])
+        ));
 
-      $smarty->assign( 'title', tr('pwd_title') );
-      $smarty->display('passwordchanged.tpl');
-      exit();
-    }else {
-      $errorMsg = tr('mb_pwdmismatch');
+        $smarty->assign( 'title', tr('pwd_title') );
+        $smarty->display('passwordchanged.tpl');
+        exit();
+      }else {
+        $errorMsg = tr('mb_pwdmismatch');
+      }
     }
   }
 

@@ -99,6 +99,9 @@
 
   //--- password.php ---
   $lang{'pwd_title'}            = 'Passwort ändern';
+  $lang{'pwd_old'}              = 'Altes Passwort';
+  $lang{'pwd_new'}              = 'Neues Passwort';
+  $lang{'pwd_oldbad'}           = 'Das alte Passwort ist falsch!';
   $lang{'pwd_changed'}          = 'Passwort wurde erfolgreich geändert.';
   
   //--- filter.php ---

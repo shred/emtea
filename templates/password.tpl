@@ -31,7 +31,11 @@
 <form action="{$smarty.server.PHP_SELF}" method="post">
   <table class="grid">
     <tr>
-      <td class="label">{$tr.mb_passwd}</td>
+      <td class="label">{$tr.pwd_old}</td>
+      <td><input type="password" name="pwdold" size="50" maxlength="127"></td>
+    </tr>
+    <tr>
+      <td class="label">{$tr.pwd_new}</td>
       <td><input type="password" name="pwd1" size="50" maxlength="127"><br><input type="password" name="pwd2" size="50" maxlength="127"></td>
     </tr>
   </table>

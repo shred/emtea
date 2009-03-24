@@ -31,9 +31,9 @@
   /*
    * Find out the user's language and include a matching i18n file.
    */
+  $catfile = './i18n/catalog.php';
   if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
     $ay1 = explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
-    $catfile = './i18n/catalog.php';
     foreach($ay1 as $llang) {
       preg_match("#^(.*?)([-_].*?)?(\;q\=(.*))?$#i", $llang, $ay2);
       $lcode = strtolower(trim($ay2[1]));
@@ -44,8 +44,8 @@
         break;
       }
     }
-    include($catfile);
   }
+  include($catfile);
   
   /**
    * Return the translated key.

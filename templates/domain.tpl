@@ -103,12 +103,12 @@
     {/foreach}
     <tr>
       <td class="label" width="10%">{$tr.domain_newmail}</td>
-      <td colspan="4"><input type="text" name="newlocal" size="50" maxlength="127"><tt>@{$domain|escape}</tt></td>
+      <td colspan="5"><input type="text" name="newlocal" size="50" maxlength="127"><tt>@{$domain|escape}</tt></td>
     </tr>
     {if !$domadmin}
       <tr>
         <td class="label">{$tr.domain_deletelabel|upper}</td>
-        <td colspan="4">{$tr.domain_deletedomain} <input type="checkbox" name="del1" value="1"> {$tr.domain_ack}: <input type="checkbox" name="del2" value="1"></td>
+        <td colspan="5">{$tr.domain_deletedomain} <input type="checkbox" name="del1" value="1"> {$tr.domain_ack}: <input type="checkbox" name="del2" value="1"></td>
       </tr>
     {/if}
   </table>

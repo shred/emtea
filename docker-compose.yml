@@ -1,0 +1,21 @@
+version: "2"
+
+services:
+  web:
+    image: 'emtea:latest'
+    build:
+      context: .
+    container_name: emtea
+    ports:
+      - '8080:80'
+    links:
+      - 'db:emtea-db'
+
+  db:
+    container_name: emtea-db
+    image: 'mariadb:10.4'
+    environment:
+      MYSQL_ROOT_PASSWORD: rooth
+      MYSQL_DATABASE: mta
+      MYSQL_USER: emtea
+      MYSQL_PASSWORD: secret

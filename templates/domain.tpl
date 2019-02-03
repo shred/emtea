@@ -38,7 +38,7 @@
       <th>{$tr.domain_folder}</th>
     </tr>
     {foreach from=$ayData item=entry}
-      <tr valign="top">
+      <tr class="result">
         {* --- Mail Address --- *}
         <td colspan="2"><tt>{$entry.local|escape|default:'<b>*</b>'}@{$domain|escape}</tt>
         {if $domadmin && $entry.mid!='' && $entry.mid!=$user}

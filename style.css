@@ -64,6 +64,14 @@ TABLE.grid TH {
   padding:2px;
 }
 
+TABLE.grid TR.result {
+  vertical-align: top;
+}
+
+TABLE.grid TR.result:hover TD {
+  background-color:#FFFFDD;
+}
+
 TABLE.grid TD {
   border:1px solid #FFFFFF;
   padding:2px;

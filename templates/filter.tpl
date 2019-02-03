@@ -37,7 +37,7 @@
       <th>{$tr.filter_delete}</th>
     </tr>
     {foreach from=$ayData item=entry}
-      <tr valign="top">
+      <tr class="result">
         {* --- From Address --- *}
         <td><input type="hidden" name="r_{$entry.id}_id" value="1"><input type="text" name="r_{$entry.id}_from" value="{$entry.sender|escape}" size="15" maxlength="127"></td>
         {* --- Subject --- *}

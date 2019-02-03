@@ -1,7 +1,7 @@
 <?php
   /**
    * Emtea -- MTA Mini Manager
-   * (C) Richard "Shred" Körber
+   * (C) Richard "Shred" KÃ¶rber
    *
    * Base include file. This file is included first, in every Emtea
    * web page. It checks for proper authorisation, and will abort
@@ -21,8 +21,6 @@
    * You should have received a copy of the GNU General Public License
    * along with this program; if not, write to the Free Software
    * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-   *
-   * $Id: _base.php,v 1.3 2004/03/09 23:15:04 shred Exp $
    */
 
   require_once('_config.php');
@@ -74,6 +72,6 @@
   $smarty->assign( 'user', $_SERVER['PHP_AUTH_USER'] );
 
   //=== HEADER ===
-  header("Content-Type: text/html;charset=iso-8859-1");
+  header("Content-Type: text/html;charset=utf-8");
   ob_start('ob_gzhandler');
 ?>

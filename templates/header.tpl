@@ -1,6 +1,6 @@
 {*
  * Emtea -- MTA Mini Manager
- * (C) Richard "Shred" Körber
+ * (C) Richard "Shred" KÃ¶rber
  *
  * This is the header template of each Emtea page, which will be included
  * above the content, and will contain head definitions and maybe CSS.
@@ -19,8 +19,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- *
- * $Id: header.tpl,v 1.1 2004/03/09 23:15:05 shred Exp $
  *}
 
 <html>

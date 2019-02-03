@@ -19,8 +19,6 @@
    * You should have received a copy of the GNU General Public License
    * along with this program; if not, write to the Free Software
    * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-   *
-   * $Id: catalog_it.php,v 1.1 2004/03/10 12:59:29 shred Exp $
    */
 
   //--- Authorization ---
@@ -35,12 +33,12 @@
   $lang{'toc_title'}            = 'Lista di tutti utenti e caselle di posta';
   $lang{'toc_createnew'}        = 'Crea nuova casella di posta';
   $lang{'toc_password'}         = 'Cambia password';
-  $lang{'toc_logout'}           = 'Termine attività';
+  $lang{'toc_logout'}           = 'Termine attivitÃ ';
   $lang{'toc_update'}           = 'Aggiorna lista';
 
   //--- logout.php ---
   $lang{'lo_loggedout'}         = 'Annotato fuori';
-  $lang{'lo_login'}             = 'Inizio attività';
+  $lang{'lo_login'}             = 'Inizio attivitÃ ';
   
   //--- domain.php ---
   $lang{'domain_title'}         = 'Dominio';
@@ -60,7 +58,7 @@
   $lang{'domain_deletedomain'}  = 'Cancella dominio?';
   $lang{'domain_ack'}           = 'Conferma';
   $lang{'domain_submit'}        = 'accetta';  
-  $lang{'domain_leastone'}      = 'Il indirizzo catch all è stato assegnato automaticamente voi.';
+  $lang{'domain_leastone'}      = 'Il indirizzo catch all Ã¨ stato assegnato automaticamente voi.';
   $lang{'domain_reject'}        = 'Scarto';
   $lang{'domain_kill'}          = 'Goccia';
 
@@ -101,7 +99,7 @@
   $lang{'pwd_title'}            = 'Cambia password';
   $lang{'pwd_old'}              = 'Vecchia password';
   $lang{'pwd_new'}              = 'Nuova password';
-  $lang{'pwd_oldbad'}           = 'La vecchia password non è valida!';
+  $lang{'pwd_oldbad'}           = 'La vecchia password non Ã¨ valida!';
   $lang{'pwd_changed'}          = 'Password cambiata con successo.';
  
   //--- filter.php ---
@@ -115,7 +113,7 @@
   $lang{'filter_to'}            = 'Destinatario';
   $lang{'filter_folder'}        = 'Folder';
   $lang{'filter_delete'}        = 'Cancellare';
-  $lang{'filter_emptyrule'}     = 'La regola vuota del filtro non è stata accettata';
+  $lang{'filter_emptyrule'}     = 'La regola vuota del filtro non Ã¨ stata accettata';
   $lang{'filter_nofolder'}      = 'Specifichi prego un dispositivo di piegatura';
   
 ?>

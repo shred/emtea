@@ -1,7 +1,7 @@
 <?php
   /**
    * Emtea -- MTA Mini Manager
-   * (C) Richard "Shred" Körber
+   * (C) Richard "Shred" KÃ¶rber
    *
    * German Language catalog file.
    *
@@ -19,8 +19,6 @@
    * You should have received a copy of the GNU General Public License
    * along with this program; if not, write to the Free Software
    * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-   *
-   * $Id: catalog_de.php,v 1.1 2004/03/09 23:15:05 shred Exp $
    */
 
   //--- Authorization ---
@@ -34,7 +32,7 @@
   //--- toc.php ---
   $lang{'toc_title'}            = 'Liste aller User und Mailboxen';
   $lang{'toc_createnew'}        = 'Neue Mailbox anlegen';
-  $lang{'toc_password'}         = 'Passwort ändern';
+  $lang{'toc_password'}         = 'Passwort Ã¤ndern';
   $lang{'toc_logout'}           = 'Abmelden';
   $lang{'toc_update'}           = 'Liste aktualisieren';
   
@@ -45,28 +43,28 @@
   //--- domain.php ---
   $lang{'domain_title'}         = 'Domain';
   $lang{'domain_nodomain'}      = 'Keine Domain';
-  $lang{'domain_deleted'}       = 'Domain gelöscht';
-  $lang{'domain_plsack'}        = 'Zum Löschen beide Checkboxen markieren';
+  $lang{'domain_deleted'}       = 'Domain gelÃ¶scht';
+  $lang{'domain_plsack'}        = 'Zum LÃ¶schen beide Checkboxen markieren';
   $lang{'domain_domain'}        = 'Domain';
   $lang{'domain_error'}         = 'Fehler';
   $lang{'domain_email'}         = 'Mail-Adresse';
   $lang{'domain_mailbox'}       = 'Mailbox';
-  $lang{'domain_delete'}        = 'Löschen';
+  $lang{'domain_delete'}        = 'LÃ¶schen';
   $lang{'domain_forwards'}      = 'Weiterleitung';
   $lang{'domain_forward'}       = 'forward';
   $lang{'domain_folder'}        = 'Verzeichnis';
   $lang{'domain_newmail'}       = 'Neue Mail-Adresse';
-  $lang{'domain_deletelabel'}   = 'löschen';
-  $lang{'domain_deletedomain'}  = 'Domain löschen?';
-  $lang{'domain_ack'}           = 'Bestätigen';
-  $lang{'domain_submit'}        = 'übernehmen';
+  $lang{'domain_deletelabel'}   = 'lÃ¶schen';
+  $lang{'domain_deletedomain'}  = 'Domain lÃ¶schen?';
+  $lang{'domain_ack'}           = 'BestÃ¤tigen';
+  $lang{'domain_submit'}        = 'Ã¼bernehmen';
   $lang{'domain_leastone'}      = 'Die Catch-All-Adresse wurde automatisch zugewiesen.';
   $lang{'domain_reject'}        = 'Abweisen';
   $lang{'domain_kill'}          = 'Verwerfen';
   
   //--- mailbox.php ---
   $lang{'mb_title'}             = 'Mailbox verwalten';
-  $lang{'mb_for'}               = 'Für';
+  $lang{'mb_for'}               = 'FÃ¼r';
   $lang{'mb_newmb'}             = 'Neue Mailbox';
   $lang{'mb_error'}             = 'Fehler';
   $lang{'mb_mbid'}              = 'Mailbox-ID';
@@ -88,34 +86,34 @@
   $lang{'mb_isdomadmin'}        = 'Domain-Admin-Recht';
   $lang{'mb_yes'}               = 'Ja';
   $lang{'mb_no'}                = 'Nein';
-  $lang{'mb_delete'}            = 'Löschen';
-  $lang{'mb_delack'}            = 'Bestätigen';
-  $lang{'mb_deluser'}           = 'User löschen?';
-  $lang{'mb_submit'}            = 'Übernehmen';
-  $lang{'mb_pleaseack'}         = 'Zum Löschen beide Checkboxen markieren!';
-  $lang{'mb_pwdmismatch'}       = 'Passwörter stimmten nicht überein. Passwort NICHT geändert.';
+  $lang{'mb_delete'}            = 'LÃ¶schen';
+  $lang{'mb_delack'}            = 'BestÃ¤tigen';
+  $lang{'mb_deluser'}           = 'User lÃ¶schen?';
+  $lang{'mb_submit'}            = 'Ãœbernehmen';
+  $lang{'mb_pleaseack'}         = 'Zum LÃ¶schen beide Checkboxen markieren!';
+  $lang{'mb_pwdmismatch'}       = 'PasswÃ¶rter stimmten nicht Ã¼berein. Passwort NICHT geÃ¤ndert.';
   $lang{'mb_isdir'}             = 'Verzeichnis';
   $lang{'mb_isfile'}            = 'Datei';
 
   //--- password.php ---
-  $lang{'pwd_title'}            = 'Passwort ändern';
+  $lang{'pwd_title'}            = 'Passwort Ã¤ndern';
   $lang{'pwd_old'}              = 'Altes Passwort';
   $lang{'pwd_new'}              = 'Neues Passwort';
   $lang{'pwd_oldbad'}           = 'Das alte Passwort ist falsch!';
-  $lang{'pwd_changed'}          = 'Passwort wurde erfolgreich geändert.';
+  $lang{'pwd_changed'}          = 'Passwort wurde erfolgreich geÃ¤ndert.';
   
   //--- filter.php ---
   $lang{'filter_title'}         = 'Filter verwalten';
-  $lang{'filter_mailbox'}       = 'Filter für Mailbox';
+  $lang{'filter_mailbox'}       = 'Filter fÃ¼r Mailbox';
   $lang{'filter_noid'}          = 'Kein Benutzer';
   $lang{'filter_error'}         = 'Fehler';
-  $lang{'filter_submit'}        = 'übernehmen';
+  $lang{'filter_submit'}        = 'Ã¼bernehmen';
   $lang{'filter_from'}          = 'Absender';
   $lang{'filter_subject'}       = 'Betreff';
-  $lang{'filter_to'}            = 'Empfänger';
+  $lang{'filter_to'}            = 'EmpfÃ¤nger';
   $lang{'filter_folder'}        = 'Verzeichnis';
-  $lang{'filter_delete'}        = 'Löschen';
-  $lang{'filter_emptyrule'}     = 'Leere Filterregel wurde nicht übernommen';
+  $lang{'filter_delete'}        = 'LÃ¶schen';
+  $lang{'filter_emptyrule'}     = 'Leere Filterregel wurde nicht Ã¼bernommen';
   $lang{'filter_nofolder'}      = 'Ein Zielordner muss angegeben werden';
   
   

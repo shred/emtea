@@ -1,6 +1,6 @@
 {*
  * Emtea -- MTA Mini Manager
- * (C) Richard "Shred" Körber
+ * (C) Richard "Shred" KÃ¶rber
  *
  * Just the template of an empty page...
  *
@@ -18,8 +18,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- *
- * $Id: empty.tpl,v 1.1 2004/03/09 23:15:05 shred Exp $
  *}
 
 {include file="header.tpl"}

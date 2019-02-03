@@ -1,7 +1,7 @@
 <?php
   /**
    * Emtea -- MTA Mini Manager
-   * (C) Richard "Shred" Körber
+   * (C) Richard "Shred" KÃ¶rber
    *
    * List all mailboxes and set edit links.
    *
@@ -19,8 +19,6 @@
    * You should have received a copy of the GNU General Public License
    * along with this program; if not, write to the Free Software
    * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-   *
-   * $Id: toc.php,v 1.8 2004/03/09 23:15:04 shred Exp $
    */
   require_once('_base.php');
   

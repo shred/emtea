@@ -34,61 +34,67 @@
   //=== PROCESS ALL CHANGES ===
   if(isset($_REQUEST['del1']) || isset($_REQUEST['del2'])) {
     if(isset($_REQUEST['del1']) && isset($_REQUEST['del2']) && $_REQUEST['del1'] && $_REQUEST['del2']) {
-      mysql_query(sprintf("UPDATE address SET mailboxid=NULL WHERE mailboxid='%s'", addslashes(trim($_REQUEST['id'])) ));
-      mysql_query(sprintf("DELETE FROM mailbox WHERE id='%s'", addslashes(trim($_REQUEST['id'])) ));
+      $db->query(sprintf(
+          "UPDATE address SET mailboxid=NULL WHERE mailboxid='%s'",
+          $db->real_escape_string(trim($_REQUEST['id']))
+      ));
+      $db->query(sprintf(
+          "DELETE FROM mailbox WHERE id='%s'",
+          $db->real_escape_string(trim($_REQUEST['id']))
+      ));
       $changed = true;
       $deleted = true;
     }else {
       $errorMsg = tr('mb_pleaseack');
     }
   }elseif(isset($_REQUEST['name'])) {
-    $rc = mysql_query(sprintf(
+    $rc = $db->query(sprintf(
       "SELECT id FROM mailbox WHERE id='%s'",
-      addslashes(trim($_REQUEST['id']))
+      $db->real_escape_string(trim($_REQUEST['id']))
     ));
-    if(mysql_num_rows($rc)==0) {
+    if($rc->num_rows==0) {
       //--- New Entry ---
-      mysql_query(sprintf(
+      $db->query(sprintf(
         "INSERT INTO mailbox SET id='%s', name='%s', uid='%s', gid='%s', home='%s', maildir='%s', spamdir=%s, virusdir=%s, imapok='%s', admin='%s', procmailok='%s', amavisok='%s', domadmin='%s'",
-        addslashes(trim($_REQUEST['id'])),
-        addslashes(trim($_REQUEST['name'])),
-        addslashes(intval($_REQUEST['uid'])),
-        addslashes(intval($_REQUEST['gid'])),
-        addslashes(trim($_REQUEST['home'])),
-        addslashes(trim($_REQUEST['maildir'])),
-        (trim($_REQUEST['spamdir'])!='' ? "'".addslashes(trim($_REQUEST['spamdir']))."'" : 'NULL'),
-        (trim($_REQUEST['virusdir'])!='' ? "'".addslashes(trim($_REQUEST['virusdir']))."'" : 'NULL'),
-        addslashes(intval($_REQUEST['imapok'])),
-        addslashes(intval($_REQUEST['admin'])),
-        addslashes(intval($_REQUEST['procmailok'])),
-        addslashes(intval($_REQUEST['amavisok'])),
-        addslashes(intval($_REQUEST['domadmin']))
+        $db->real_escape_string(trim($_REQUEST['id'])),
+        $db->real_escape_string(trim($_REQUEST['name'])),
+        $db->real_escape_string(intval($_REQUEST['uid'])),
+        $db->real_escape_string(intval($_REQUEST['gid'])),
+        $db->real_escape_string(trim($_REQUEST['home'])),
+        $db->real_escape_string(trim($_REQUEST['maildir'])),
+        (trim($_REQUEST['spamdir'])!='' ? "'".$db->real_escape_string(trim($_REQUEST['spamdir']))."'" : 'NULL'),
+        (trim($_REQUEST['virusdir'])!='' ? "'".$db->real_escape_string(trim($_REQUEST['virusdir']))."'" : 'NULL'),
+        $db->real_escape_string(intval($_REQUEST['imapok'])),
+        $db->real_escape_string(intval($_REQUEST['admin'])),
+        $db->real_escape_string(intval($_REQUEST['procmailok'])),
+        $db->real_escape_string(intval($_REQUEST['amavisok'])),
+        $db->real_escape_string(intval($_REQUEST['domadmin']))
       ));
     }else {
       //--- Existing Entry ---
-      mysql_query(sprintf(
+      $db->query(sprintf(
         "UPDATE mailbox SET name='%s', uid='%s', gid='%s', home='%s', maildir='%s', spamdir=%s, virusdir=%s, imapok='%s', admin='%s', procmailok='%s', amavisok='%s', domadmin='%s' WHERE id='%s'",
-        addslashes(trim($_REQUEST['name'])),
-        addslashes(intval($_REQUEST['uid'])),
-        addslashes(intval($_REQUEST['gid'])),
-        addslashes(trim($_REQUEST['home'])),
-        addslashes(trim($_REQUEST['maildir'])),
-        (trim($_REQUEST['spamdir'])!='' ? "'".addslashes(trim($_REQUEST['spamdir']))."'" : 'NULL'),
-        (trim($_REQUEST['virusdir'])!='' ? "'".addslashes(trim($_REQUEST['virusdir']))."'" : 'NULL'),
-        addslashes(intval($_REQUEST['imapok'])),
-        addslashes(intval($_REQUEST['admin'])),
-        addslashes(intval($_REQUEST['procmailok'])),
-        addslashes(intval($_REQUEST['amavisok'])),
-        addslashes(intval($_REQUEST['domadmin'])),
-        addslashes(trim($_REQUEST['id']))
+        $db->real_escape_string(trim($_REQUEST['name'])),
+        $db->real_escape_string(intval($_REQUEST['uid'])),
+        $db->real_escape_string(intval($_REQUEST['gid'])),
+        $db->real_escape_string(trim($_REQUEST['home'])),
+        $db->real_escape_string(trim($_REQUEST['maildir'])),
+        (trim($_REQUEST['spamdir'])!='' ? "'".$db->real_escape_string(trim($_REQUEST['spamdir']))."'" : 'NULL'),
+        (trim($_REQUEST['virusdir'])!='' ? "'".$db->real_escape_string(trim($_REQUEST['virusdir']))."'" : 'NULL'),
+        $db->real_escape_string(intval($_REQUEST['imapok'])),
+        $db->real_escape_string(intval($_REQUEST['admin'])),
+        $db->real_escape_string(intval($_REQUEST['procmailok'])),
+        $db->real_escape_string(intval($_REQUEST['amavisok'])),
+        $db->real_escape_string(intval($_REQUEST['domadmin'])),
+        $db->real_escape_string(trim($_REQUEST['id']))
       ));
     }
     if(trim($_REQUEST['pwd1'])!='' || trim($_REQUEST['pwd2'])!='') {
       if(trim($_REQUEST['pwd1'])==trim($_REQUEST['pwd2'])) {
-        mysql_query(sprintf(
+        $db->query(sprintf(
           "UPDATE mailbox SET password=ENCRYPT('%s') WHERE id='%s'",
-          addslashes(trim($_REQUEST['pwd1'])),
-          addslashes($_REQUEST['id'])
+          $db->real_escape_string(trim($_REQUEST['pwd1'])),
+          $db->real_escape_string($_REQUEST['id'])
         ));
       }else {
         $errorMsg = tr('mb_pwdmismatch');
@@ -101,11 +107,11 @@
   //=== COLLECT ALL TEMPLATE DATA ===
   if(!$deleted && isset($_REQUEST['id'])) {
     $id = trim($_REQUEST['id']);
-    $rs = mysql_query(sprintf(
+    $rs = $db->query(sprintf(
       "SELECT name, uid, gid, home, maildir, spamdir, virusdir, imapok, admin, procmailok, amavisok, domadmin FROM mailbox WHERE id='%s'",
-      addslashes($id)
+      $db->real_escape_string($id)
     ));
-    $ayData = mysql_fetch_array($rs);
+    $ayData = $rs->fetch_array();
   }
   
   if($changed) {

@@ -24,22 +24,22 @@
   
   //=== PROCESS ALL CHANGES ===
   $ayBoxes = array();
-  $rs = mysql_query("SELECT id,name,imapok,admin,procmailok,domadmin FROM mailbox ORDER BY admin DESC, imapok DESC, id");
-  while($ayResult = mysql_fetch_array($rs)) {
+  $rs = $db->query("SELECT id,name,imapok,admin,procmailok,domadmin FROM mailbox ORDER BY admin DESC, imapok DESC, id");
+  while($ayResult = $rs->fetch_array()) {
     $id = $ayResult['id'];
 
     if(isset($_REQUEST["new_$id"]) && trim($_REQUEST["new_$id"])!='') {
       //--- Domain already exists? ---
-      $rc = mysql_query(sprintf(
+      $rc = $db->query(sprintf(
         "SELECT DISTINCT domain FROM address WHERE domain='%s'",
-        addslashes(trim($_REQUEST["new_$id"]))
+        $db->real_escape_string(trim($_REQUEST["new_$id"]))
       ));
-      if(mysql_num_rows($rc)==0) {
+      if($rc->num_rows==0) {
         //--- Create new domain ---
-        mysql_query(sprintf(
+        $db->query(sprintf(
           "INSERT INTO address SET domain='%s', mailboxid='%s'",
-          addslashes(trim($_REQUEST["new_$id"])),
-          addslashes($id)
+          $db->real_escape_string(trim($_REQUEST["new_$id"])),
+          $db->real_escape_string($id)
         ));
         $smarty->assign(
           'js',
@@ -51,13 +51,13 @@
       }
     }
     
-    $rc = mysql_query(sprintf(
+    $rc = $db->query(sprintf(
       "SELECT DISTINCT domain FROM address WHERE mailboxid='%s' ORDER BY domain",
-      addslashes($id)
+      $db->real_escape_string($id)
     ));
 
     $ayResult['ayDomains'] = array();
-    while($ayResult2 = mysql_fetch_array($rc)) {
+    while($ayResult2 = $rc->fetch_array()) {
       $ayResult['ayDomains'][] = $ayResult2['domain'];
     }
 
@@ -65,9 +65,9 @@
   }
   
   //=== COLLECT ALL TEMPLATE DATA ===
-  $rs = mysql_query("SELECT DISTINCT domain FROM address WHERE mailboxid IS NULL ORDER BY domain");
+  $rs = $db->query("SELECT DISTINCT domain FROM address WHERE mailboxid IS NULL ORDER BY domain");
   $ayNUDomains = array();
-  while($ayResult = mysql_fetch_array($rs)) {
+  while($ayResult = $rs->fetch_array()) {
     $ayNUDomains[] = $ayResult['domain'];
   }
   

@@ -26,20 +26,21 @@
   $errorMsg = '';
   
   //=== PROCESS ALL CHANGES ===
-  if(trim($_REQUEST['pwd1'])!='' || trim($_REQUEST['pwd2'])!='') {
-    $rc = mysql_query(sprintf(
+  if(isset($_REQUEST['pwd1']) && isset($_REQUEST['pwd2'])
+      && (trim($_REQUEST['pwd1'])!='' || trim($_REQUEST['pwd2'])!='')) {
+    $rc = $db->query(sprintf(
       "SELECT id FROM mailbox WHERE id='%s' AND password=ENCRYPT('%s',password)",
-      addslashes($data['id']),
-      addslashes($_REQUEST['pwdold'])
+      $db->real_escape_string($data['id']),
+      $db->real_escape_string($_REQUEST['pwdold'])
     ));
-    if(mysql_num_rows($rc)!=1) {
+    if($rc->num_rows!=1) {
       $errorMsg = tr('pwd_oldbad');
     } else {
       if(trim($_REQUEST['pwd1'])==trim($_REQUEST['pwd2'])) {
-        mysql_query(sprintf(
+        $db->query(sprintf(
           "UPDATE mailbox SET password=ENCRYPT('%s') WHERE id='%s'",
-          addslashes(trim($_REQUEST['pwd1'])),
-          addslashes($data['id'])
+          $db->real_escape_string(trim($_REQUEST['pwd1'])),
+          $db->real_escape_string($data['id'])
         ));
 
         $smarty->assign( 'title', tr('pwd_title') );

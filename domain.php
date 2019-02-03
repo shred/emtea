@@ -21,35 +21,35 @@
    * along with this program; if not, write to the Free Software
    * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
    */
-  
+
   require_once('_base.php');
-  
+
   if(!isset($_REQUEST['domain'])) die(tr('domain_nodomain'));
   $domain = trim($_REQUEST['domain']);
-  
+
   if(isDomAdmin()) {
-    $rs = mysql_query(sprintf("SELECT id FROM address WHERE domain='%s' AND mailboxid='%s'",
-      addslashes($domain),
-      addslashes(getUser())
+    $rs = $db->query(sprintf("SELECT id FROM address WHERE domain='%s' AND mailboxid='%s'",
+      $db->real_escape_string($domain),
+      $db->real_escape_string(getUser())
     ));
-    if(mysql_num_rows($rs)==0) die("Forbidden");
+    if($rs->num_rows==0) die("Forbidden");
   }
-  
+
   $errorMsg = '';
   $changed = false;
-  
+
   //=== PROCESS ALL CHANGES ===
   if(isset($_REQUEST['del1']) || isset($_REQUEST['del2'])) {
     if(isset($_REQUEST['del1']) && isset($_REQUEST['del2']) && $_REQUEST['del1'] && $_REQUEST['del2']) {
       if(!isDomAdmin()) {
         //--- Delete forwards to be deleted ---
-        $rs = mysql_query(sprintf("SELECT id FROM address WHERE domain='%s'", addslashes($domain)));
-        while($ayResult = mysql_fetch_array($rs)) {
-          mysql_query(sprintf("DELETE FROM forward WHERE addressid='%s'", addslashes($ayResult['id'])));
+        $rs = $db->query(sprintf("SELECT id FROM address WHERE domain='%s'", $db->real_escape_string($domain)));
+        while($ayResult = $rs->fetch_array()) {
+          $db->query(sprintf("DELETE FROM forward WHERE addressid='%s'", $db->real_escape_string($ayResult['id'])));
         }
         //--- Delete all domain entries ---
-        mysql_query(sprintf("DELETE FROM address WHERE domain='%s'", addslashes($domain)));
-        //--- Refresh ---      
+        $db->query(sprintf("DELETE FROM address WHERE domain='%s'", $db->real_escape_string($domain)));
+        //--- Refresh ---
         $smarty->assign('js', 'top.toc.location.href="toc.php";');
         $smarty->display('domaindeleted.tpl');
         exit();
@@ -63,10 +63,10 @@
       if(($pos = strpos($local,'@')) !== false) {
         $local = substr($local,0,$pos);
       }
-      mysql_query(sprintf(
+      $db->query(sprintf(
         "INSERT INTO address SET local='%s', domain='%s'",
-        addslashes($local),
-        addslashes($domain)
+        $db->real_escape_string($local),
+        $db->real_escape_string($domain)
       ));
     }
 
@@ -76,19 +76,19 @@
       //--- Update all users ---
       if(preg_match('/^user_(\d+)$/', $key, $ayMatch)) {
         if(isDomAdmin()) {
-          mysql_query(sprintf(
+          $db->query(sprintf(
             "UPDATE address SET mailboxid=%s, devnull=%s WHERE id='%s' AND (mailboxid='%s' OR mailboxid IS NULL)",
-            ($val!='' && $val!='*' ? "'".addslashes($val)."'" : "NULL"),
+            ($val!='' && $val!='*' ? "'".$db->real_escape_string($val)."'" : "NULL"),
             ($val=='*' ? 1 : 0),
-            addslashes($ayMatch[1]),
-            addslashes(getUser())
+            $db->real_escape_string($ayMatch[1]),
+            $db->real_escape_string(getUser())
           ));
         }else {
-          mysql_query(sprintf(
+          $db->query(sprintf(
             "UPDATE address SET mailboxid=%s, devnull=%s WHERE id='%s'",
-            ($val!='' && $val!='*' ? "'".addslashes($val)."'" : "NULL"),
+            ($val!='' && $val!='*' ? "'".$db->real_escape_string($val)."'" : "NULL"),
             ($val=='*' ? 1 : 0),
-            addslashes($ayMatch[1])
+            $db->real_escape_string($ayMatch[1])
           ));
         }
       }
@@ -96,17 +96,17 @@
       //--- Update all folder ---
       if(preg_match('/^folder_(\d+)$/', $key, $ayMatch)) {
         if(isDomAdmin()) {
-          mysql_query(sprintf(
+          $db->query(sprintf(
             "UPDATE address SET folder=%s WHERE id='%s' AND (mailboxid='%s' OR mailboxid IS NULL)",
-            ($val!='' ? "'".addslashes($val)."'" : "NULL"),
-            addslashes($ayMatch[1]),
-            addslashes(getUser())
+            ($val!='' ? "'".$db->real_escape_string($val)."'" : "NULL"),
+            $db->real_escape_string($ayMatch[1]),
+            $db->real_escape_string(getUser())
           ));
         }else {
-          mysql_query(sprintf(
+          $db->query(sprintf(
             "UPDATE address SET folder=%s WHERE id='%s'",
-            ($val!='' ? "'".addslashes($val)."'" : "NULL"),
-            addslashes($ayMatch[1])
+            ($val!='' ? "'".$db->real_escape_string($val)."'" : "NULL"),
+            $db->real_escape_string($ayMatch[1])
           ));
         }
       }
@@ -114,15 +114,15 @@
       //--- Delete entry ---
       if(preg_match('/^del_(\d+)$/', $key, $ayMatch)) {
         if(isDomAdmin()) {
-          mysql_query(sprintf(
+          $db->query(sprintf(
             "DELETE FROM address WHERE id='%s' AND (mailboxid='%s' OR mailboxid IS NULL)",
-            addslashes($ayMatch[1]),
-            addslashes(getUser())
+            $db->real_escape_string($ayMatch[1]),
+            $db->real_escape_string(getUser())
           ));
         }else {
-          mysql_query(sprintf(
+          $db->query(sprintf(
             "DELETE FROM address WHERE id='%s'",
-            addslashes($ayMatch[1])
+            $db->real_escape_string($ayMatch[1])
           ));
         }
       }
@@ -132,26 +132,26 @@
         $oldval = $_REQUEST['fwdid_'.$ayMatch[2]];
         $allowed = true;
         if(isDomAdmin()) {
-          $rs = mysql_query(sprintf(
+          $rs = $db->query(sprintf(
             "SELECT id FROM address WHERE id='%s' AND (mailboxid='%s' OR mailboxid IS NULL)",
-            addslashes($addrid),
-            addslashes(getUser())
+            $db->real_escape_string($addrid),
+            $db->real_escape_string(getUser())
           ));
-          $allowed = mysql_num_rows($rs)!=0;
+          $allowed = $rs->num_rows!=0;
         }
         if($allowed) {
           if($val!='' && $val!=$oldval) {
-            mysql_query(sprintf(
+            $db->query(sprintf(
               "UPDATE forward SET target='%s' WHERE addressid='%s' AND target='%s'",
-              addslashes($val),
-              addslashes($addrid),
-              addslashes($oldval)
+              $db->real_escape_string($val),
+              $db->real_escape_string($addrid),
+              $db->real_escape_string($oldval)
             ));
           }elseif($val=='') {
-            mysql_query(sprintf(
+            $db->query(sprintf(
               "DELETE FROM forward WHERE addressid='%s' AND target='%s'",
-              addslashes($addrid),
-              addslashes($oldval)
+              $db->real_escape_string($addrid),
+              $db->real_escape_string($oldval)
             ));
           }
         }
@@ -162,67 +162,67 @@
           $addrid = $ayMatch[1];
           $allowed = true;
           if(isDomAdmin()) {
-            $rs = mysql_query(sprintf(
+            $rs = $db->query(sprintf(
               "SELECT id FROM address WHERE id='%s' AND (mailboxid='%s' OR mailboxid IS NULL)",
-              addslashes($addrid),
-              addslashes(getUser())
+              $db->real_escape_string($addrid),
+              $db->real_escape_string(getUser())
             ));
-            $allowed = mysql_num_rows($rs)!=0;
+            $allowed = $rs->num_rows!=0;
           }
           if($allowed) {
-            mysql_query(sprintf(
+            $db->query(sprintf(
               "INSERT INTO forward SET target='%s', addressid='%s'",
-              addslashes($val),
-              addslashes($addrid)
+              $db->real_escape_string($val),
+              $db->real_escape_string($addrid)
             ));
           }
         }
       }
     }
-    
+
     //--- Make sure a Domain Admin has at least one entry ---
     if(isDomAdmin()) {
-      $rs = mysql_query(sprintf(
+      $rs = $db->query(sprintf(
         "SELECT id FROM address WHERE mailboxid='%s'",
-        addslashes(getUser())
+        $db->real_escape_string(getUser())
       ));
-      if(mysql_num_rows($rs)==0) {
-        mysql_query(sprintf(
+      if($rs->num_rows==0) {
+        $db->query(sprintf(
           "UPDATE address SET mailboxid='%s' WHERE local IS NULL AND domain='%s'",
-          addslashes(getUser()),
-          addslashes($domain) 
+          $db->real_escape_string(getUser()),
+          $db->real_escape_string($domain)
         ));
       }
       $errorMsg = tr('domain_leastone');
     }
-    
+
     $changed = true;
   }
-  
+
   //=== COLLECT ALL TEMPLATE DATA ===
   $ayUsers = array();
-  $rs = mysql_query("SELECT id FROM mailbox ORDER BY id");
-  while($ayResult = mysql_fetch_array($rs)) {
+  $rs = $db->query("SELECT id FROM mailbox ORDER BY id");
+  while($ayResult = $rs->fetch_array()) {
     $ayUsers[] = $ayResult['id'];
   }
-  
+
   if($changed) {
     $smarty->assign( 'js', 'top.toc.location.href="toc.php";' );
   }
-  
+
   $fwdcnt = 0;
-  $rs = mysql_query(sprintf(
+  $rs = $db->query(sprintf(
     "SELECT a.id id, a.local local, m.id mid, COUNT(f.target) cnt, a.folder folder, a.devnull devnull FROM address a LEFT JOIN mailbox m ON a.mailboxid=m.id LEFT JOIN forward f ON a.id=f.addressid WHERE a.domain='%s' GROUP BY a.id ORDER BY a.local",
-    addslashes($domain)
+    $db->real_escape_string($domain)
   ));
   $ayData = array();
-  while($ayResult = mysql_fetch_array($rs)) {
-    $rs2 = mysql_query(sprintf(
+  while($ayResult = $rs->fetch_array()) {
+    $rs2 = $db->query(sprintf(
       "SELECT target FROM forward WHERE addressid='%s' ORDER BY target",
-      addslashes($ayResult['id'])
+      $db->real_escape_string($ayResult['id'])
     ));
     $ayResult['forwards'] = array();
-    while($ayResult2 = mysql_fetch_array($rs2)) {
+    while($ayResult2 = $rs2->fetch_array()) {
       $ayResult['forwards'][] = $ayResult2['target'];
     }
     $ayData[] = $ayResult;
@@ -236,5 +236,5 @@
   $smarty->assign( 'errorMsg' , $errorMsg );
 
   $smarty->display('domain.tpl');
-  
+
 ?>

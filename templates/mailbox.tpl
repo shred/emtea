@@ -22,7 +22,7 @@
 
 {include file="header.tpl"}
 
-{if $id }
+{if isset($id)}
   <h1>{$tr.mb_for} {$id|escape}</h1>
 {else}
   <h1>{$tr.mb_newmb}</h1>
@@ -35,7 +35,7 @@
     <tr>
       <td class="label">{$tr.mb_mbid}</td>
       <td>
-        {if $id}
+        {if isset($id)}
           <input type="hidden" name="id" value="{$id|escape}">{$id|escape}
         {else}
           <input type="text" name="id" size="50" maxlength="127">
@@ -74,10 +74,12 @@
       <td class="label">{$tr.mb_df_virus}{$tr.mb_isdir}</td>
       <td><input type="text" name="virusdir" value="{$data.virusdir|escape}" size="50" maxlength="127"><br><small>{$tr.mb_df_empty} {$tr.mb_df_mail}{$tr.mb_isdir}</small></td>
     </tr>
-    <tr>
-      <td class="label">&nbsp;</td>
-      <td><a href="filter.php?id={$id|escape}">{$tr.mb_editfilter}</a></td>
-    </tr>
+    {if isset($id)}
+      <tr>
+        <td class="label">&nbsp;</td>
+        <td><a href="filter.php?id={$id|escape}">{$tr.mb_editfilter}</a></td>
+      </tr>
+    {/if}
     <tr>
       <td class="label">{$tr.mb_imap}</td>
       <td><select name="imapok" size="1">
@@ -113,7 +115,7 @@
         <option value="0" {if !$data.admin}selected{/if}>{$tr.mb_no}</option>
       </select></td>
     </tr>
-    {if $id }
+    {if isset($id)}
       <tr>
         <td class="label">{$tr.mb_delete|upper}</td>
         <td>{$tr.mb_deluser} <input type="checkbox" name="del1" value="1"> {$tr.mb_delack}: <input type="checkbox" name="del2" value="1"></td>

@@ -37,33 +37,38 @@
   }
 
   //=== CONNECT TO DATABASE ===
-  mysql_connect($CONFIG['dbHost'],$CONFIG['dbUser'],$CONFIG['dbPasswd']);
-  mysql_select_db($CONFIG['dbName']);
+  $db = mysqli_connect($CONFIG['dbHost'],$CONFIG['dbUser'],$CONFIG['dbPasswd'],$CONFIG['dbName']);
+  if (!$db) {
+    echo("Failed to connect to database: " . $db->connect_error);
+    exit();
+  }
 
   //=== LOGIN CHECK ===
-  $rc = mysql_query(sprintf(
+  $rc = $db->query(sprintf(
     "SELECT id, domadmin FROM mailbox WHERE id='%s' AND password=ENCRYPT('%s',password) AND (admin=1 OR domadmin=1)",
-    addslashes($_SERVER['PHP_AUTH_USER']),
-    addslashes($_SERVER['PHP_AUTH_PW'])
+    $db->real_escape_string($_SERVER['PHP_AUTH_USER']),
+    $db->real_escape_string($_SERVER['PHP_AUTH_PW'])
   ));
-  if(mysql_num_rows($rc)!=1) {
+
+  if($rc->num_rows != 1) {
     header('WWW-Authenticate: Basic realm="Emtea"');
     header('HTTP/1.0 401 Unauthorized');
     print(tr('auth_error_unknown'));
     exit();
   }
-  $data = mysql_fetch_array($rc);
+
+  $data = $rc->fetch_array();
   $domadmin = $data['domadmin']==1;
 
   function isDomAdmin() {
     global $domadmin;
     return $domadmin;
   }
-  
+
   function getUser() {
     return $_SERVER['PHP_AUTH_USER'];
   }
-  
+
   //=== INITIALIZE SMARTY ===
   require_once('Smarty.class.php');
   $smarty = new Smarty();

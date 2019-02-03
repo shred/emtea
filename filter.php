@@ -40,13 +40,13 @@
       if($sender=='' && $subject=='' && $recipient=='') {
         $errorMsg = tr('filter_emptyrule');
       }else {
-        mysql_query(sprintf(
+        $db->query(sprintf(
           "INSERT INTO filter SET mailboxid='%s', sender=%s, subject=%s, recipient=%s, folder='%s'",
-          addslashes($id),
-          ($sender!=''    ? "'".addslashes($sender)."'"    : "NULL" ),
-          ($subject!=''   ? "'".addslashes($subject)."'"   : "NULL" ),
-          ($recipient!='' ? "'".addslashes($recipient)."'" : "NULL" ),
-          addslashes($folder)
+          $db->real_escape_string($id),
+          ($sender!=''    ? "'".$db->real_escape_string($sender)."'"    : "NULL" ),
+          ($subject!=''   ? "'".$db->real_escape_string($subject)."'"   : "NULL" ),
+          ($recipient!='' ? "'".$db->real_escape_string($recipient)."'" : "NULL" ),
+          $db->real_escape_string($folder)
         ));
       }
     }
@@ -65,34 +65,34 @@
         }elseif($sender=='' && $subject=='' && $recipient=='') {
           $errorMsg = tr('filter_emptyrule');
         }else {
-          mysql_query(sprintf(
+          $db->query(sprintf(
             "UPDATE filter SET sender=%s, subject=%s, recipient=%s, folder='%s' WHERE id=%s",
-            ($sender!=''    ? "'".addslashes($sender)."'"    : "NULL" ),
-            ($subject!=''   ? "'".addslashes($subject)."'"   : "NULL" ),
-            ($recipient!='' ? "'".addslashes($recipient)."'" : "NULL" ),
-            addslashes($folder),
-            addslashes($eid)
+            ($sender!=''    ? "'".$db->real_escape_string($sender)."'"    : "NULL" ),
+            ($subject!=''   ? "'".$db->real_escape_string($subject)."'"   : "NULL" ),
+            ($recipient!='' ? "'".$db->real_escape_string($recipient)."'" : "NULL" ),
+            $db->real_escape_string($folder),
+            $db->real_escape_string($eid)
           ));
         }
       }
 
       //--- Delete entry ---
       if(preg_match('/^del_(\d+)$/', $key, $ayMatch)) {
-        mysql_query(sprintf(
+        $db->query(sprintf(
           "DELETE FROM filter WHERE id='%s'",
-          addslashes($ayMatch[1])
+          $db->real_escape_string($ayMatch[1])
         ));
       }
     }
   }
 
   //=== COLLECT ALL TEMPLATE DATA ===
-  $rs = mysql_query(sprintf(
+  $rs = $db->query(sprintf(
     "SELECT id, sender, subject, recipient, folder FROM filter WHERE mailboxid='%s'",
-    addslashes($id)
+    $db->real_escape_string($id)
   ));
   $ayData = array();
-  while($ayResult = mysql_fetch_array($rs)) {
+  while($ayResult = $rs->fetch_array()) {
     $ayData[] = $ayResult;
   }
 

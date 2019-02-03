@@ -23,5 +23,6 @@
   
   require_once('_base.php');
   
+  $smarty->assign( 'title', '' );
   $smarty->display('empty.tpl');
 ?>

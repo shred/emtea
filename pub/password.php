@@ -38,7 +38,7 @@
     } else {
       if(trim($_REQUEST['pwd1'])==trim($_REQUEST['pwd2'])) {
         $db->query(sprintf(
-          "UPDATE mailbox SET password=ENCRYPT('%s') WHERE id='%s'",
+          "UPDATE mailbox SET password=ENCRYPT('%s',CONCAT('$6$',SUBSTRING(SHA(RAND()),-16))) WHERE id='%s'",
           $db->real_escape_string(trim($_REQUEST['pwd1'])),
           $db->real_escape_string($data['id'])
         ));
